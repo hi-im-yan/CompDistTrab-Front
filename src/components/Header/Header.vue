@@ -49,19 +49,20 @@ export default {
     drawer: false,
     group: null,
     drawerItems: [
-      {"nome": "Home", "icon": "mdi-home"},
+      {"nome": "Lojas", "icon": "mdi-home"},
       {"nome": "Account", "icon": "mdi-account"},
     ],
     navbarItems: [
       {"nome": "sobre"},
       {"nome": "integrantes"},
+      {"nome": "lojas"},
     ]
   }),
 
   methods: {
     displayThisComponent(value){
       this.$emit('clicked', value)
-}
+    }
   }
 }
 </script>
