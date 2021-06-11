@@ -3,6 +3,7 @@
     <Header @clicked="displayThisComponent"></Header>
     <Sobre v-if="selectedMenu == 'sobre'"></Sobre>
     <Integrantes v-if="selectedMenu == 'integrantes'"></Integrantes>
+    <Carrinho></Carrinho>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import Header from '@/components/Header/Header.vue'
 import Sobre from '@/components/Sobre/Sobre.vue'
 import Integrantes from '@/components/Integrantes/Integrantes.vue'
+import Carrinho from "../components/Carrinho/Carrinho";
 
 export default {
   name: 'Home',
@@ -23,7 +25,8 @@ export default {
   components: {
     Header,
     Sobre,
-    Integrantes
+    Integrantes,
+    Carrinho
   },
 
   methods: {
