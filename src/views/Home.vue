@@ -5,6 +5,7 @@
     <Integrantes v-if="selectedMenu == 'integrantes' || selectedMenu == ''"></Integrantes>
     <Lojas v-if="selectedMenu == 'lojas'" @clicked="displayThisLoja"></Lojas>
     <Produtos v-if="selectedLoja != -1 && selectedMenu == -1" v-bind:lojaId="selectedLoja" @clicked="addToCart"></Produtos>
+    <Carrinho></Carrinho>
   </div>
 </template>
 
@@ -15,6 +16,7 @@ import Sobre from '@/components/Sobre/Sobre.vue'
 import Integrantes from '@/components/Integrantes/Integrantes.vue'
 import Lojas from '@/components/Lojas/Lojas.vue'
 import Produtos from "../components/Produtos/Produtos";
+import Carrinho from "../components/Carrinho/Carrinho";
 
 export default {
   name: 'Home',
@@ -31,7 +33,8 @@ export default {
     Sobre,
     Integrantes,
     Lojas,
-    Produtos
+    Produtos,
+    Carrinho,
   },
 
   methods: {
