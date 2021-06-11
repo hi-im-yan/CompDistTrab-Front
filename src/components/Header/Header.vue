@@ -28,7 +28,7 @@
             active-class="deep-purple--text text--accent-4"
 
         >
-          <v-list-item @click="drawer = !drawer" v-for="item in drawerItems" :key="item.nome">
+          <v-list-item @click="drawer = !drawer; displayThisComponent(item.nome)" v-for="item in drawerItems" :key="item.nome">
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-icon>
@@ -50,7 +50,8 @@ export default {
     group: null,
     drawerItems: [
       {"nome": "Home", "icon": "mdi-home"},
-      {"nome": "Account", "icon": "mdi-account"},
+      {"nome": "Conta", "icon": "mdi-account"},
+      {"nome": "Carrinho", "icon": "mdi-cart"},
     ],
     navbarItems: [
       {"nome": "sobre"},
