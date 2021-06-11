@@ -4,6 +4,7 @@
     <Sobre v-if="selectedMenu == 'sobre'"></Sobre>
     <Integrantes v-if="selectedMenu == 'integrantes' || selectedMenu == ''"></Integrantes>
     <Lojas v-if="selectedMenu == 'lojas'" @clicked="displayThisLoja"></Lojas>
+    <Produtos v-if="selectedLoja != -1 && selectedMenu == -1" v-bind:lojaId="selectedLoja" @clicked="addToCart"></Produtos>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import Header from '@/components/Header/Header.vue'
 import Sobre from '@/components/Sobre/Sobre.vue'
 import Integrantes from '@/components/Integrantes/Integrantes.vue'
 import Lojas from '@/components/Lojas/Lojas.vue'
+import Produtos from "../components/Produtos/Produtos";
 
 export default {
   name: 'Home',
@@ -20,14 +22,16 @@ export default {
   data: () => ({
     selectedMenu: "",
     logged:false,
-    selectedLoja: -1
+    selectedLoja: -1,
+    cart: []
   }),
 
   components: {
     Header,
     Sobre,
     Integrantes,
-    Lojas
+    Lojas,
+    Produtos
   },
 
   methods: {
@@ -37,7 +41,11 @@ export default {
 
     displayThisLoja(lojaId){
       this.selectedLoja = lojaId
-      console.log(this.selectedLoja)
+      this.selectedMenu = -1
+    },
+
+    addToCart(productToAdd){
+      this.cart.push(productToAdd)
     }
   }
 }
