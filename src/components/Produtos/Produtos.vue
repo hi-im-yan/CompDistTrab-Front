@@ -177,7 +177,8 @@ export default {
 
       let productToAdd = {
         "totalPrice": totalPrice,
-        "productName": productName
+        "productName": productName,
+        "quantity": Number(quantity)
       }
       this.$emit('clicked', productToAdd)
     }

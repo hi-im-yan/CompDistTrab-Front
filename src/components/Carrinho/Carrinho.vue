@@ -15,18 +15,33 @@
     }"
   ></v-data-table>
   <v-divider class="mt-5"></v-divider>
-
-  <v-btn
-      outlined
-      class="mt-5"
-      color="deep-purple lighten-2"
-      @click="snackbar = true"
-  >
-    confirmar compra
-    <v-icon right>
-      mdi-cart-check
-    </v-icon>
-  </v-btn>
+  <v-row>
+    <v-col
+      cols="2"
+    >
+      <v-text-field
+          placeholder="Valor Total"
+          disabled
+          v-model="valorTotalReaisString"
+      >
+      </v-text-field>
+    </v-col>
+    <v-col
+      cols="1"
+    >
+      <v-btn
+          outlined
+          class="mt-5"
+          color="deep-purple lighten-2"
+          @click="snackbar = true"
+      >
+        confirmar compra
+        <v-icon right>
+          mdi-cart-check
+        </v-icon>
+      </v-btn>
+    </v-col>
+  </v-row>
   <v-snackbar
       v-model="snackbar"
       :timeout="timeout"
@@ -51,71 +66,37 @@
 export default {
   name: "Carrinho",
 
+  props: ['cart'],
+
+  watch: {
+    cart: {
+      immediate: true,
+      handler(val){
+        this.produtos = val
+        this.produtos.forEach((produto) => {
+          this.valorTotalReais += produto.totalPrice
+          this.valorTotalReaisString = "R$ " + this.valorTotalReais
+        })
+      }
+    }
+  },
+
   data () {
     return {
       snackbar: false,
       timeout: 2000,
+      valorTotalReaisString: "R$ 0",
+      valorTotalReais: 0,
       headers: [
         {
           text: 'Produto',
           align: 'start',
-          value: 'name',
+          value: 'productName',
         },
-        { text: 'Quantidade', value: 'quantidade' },
-        { text: 'Preço total', value: 'preco' },
+        { text: 'Quantidade', value: 'quantity' },
+        { text: 'Preço', value: 'totalPrice' },
       ],
-      produtos: [
-        {
-          name: 'Frozen Yogurt',
-          quantidade: 1,
-          preco: 'Ice cream',
-        },
-        {
-          name: 'Ice cream sandwich',
-          quantidade: 1,
-          preco: 'Ice cream',
-        },
-        {
-          name: 'Eclair',
-          quantidade: 1,
-          preco: 'Cookie',
-        },
-        {
-          name: 'Cupcake',
-          quantidade: 1,
-          preco: 'Pastry',
-        },
-        {
-          name: 'Gingerbread',
-          quantidade: 1,
-          preco: 'Cookie',
-        },
-        {
-          name: 'Jelly bean',
-          quantidade: 1,
-          preco: 'Candy',
-        },
-        {
-          name: 'Lollipop',
-          quantidade: 1,
-          preco: 'Candy',
-        },
-        {
-          name: 'Honeycomb',
-          quantidade: 1,
-          preco: 'Toffee',
-        },
-        {
-          name: 'Donut',
-          quantidade: 1,
-          preco: 'Pastry',
-        },
-        {
-          name: 'KitKat',
-          quantidade: 1,
-          preco: 'Candy',
-        },
-      ],
+      produtos: [],
     }
   },
 }

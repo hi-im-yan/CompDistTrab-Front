@@ -5,7 +5,7 @@
     <Integrantes v-if="selectedMenu == 'integrantes' || selectedMenu == ''"></Integrantes>
     <Lojas v-if="selectedMenu == 'lojas'" @clicked="displayThisLoja"></Lojas>
     <Produtos v-if="selectedLoja != -1 && selectedMenu == -1" v-bind:lojaId="selectedLoja" @clicked="addToCart"></Produtos>
-    <Carrinho></Carrinho>
+    <Carrinho v-if="selectedMenu == 'Carrinho'" v-bind:cart="cart"></Carrinho>
   </div>
 </template>
 
